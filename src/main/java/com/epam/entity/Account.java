@@ -1,5 +1,7 @@
 package com.epam.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,24 +11,16 @@ public class Account {
     @Column(name = "EMP_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int employeeId;
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
     @Column(name = "USER_NAME")
     private String userName;
     @Column(name = "URL")
     private String url;
     @Column(name = "password")
     private String password;
+
     public String getUserName() {
         return userName;
     }
-
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -37,16 +31,17 @@ public class Account {
     }
 
 
-    @ManyToOne( cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinColumn(name = "groupId")
-    private Group group ;
+    private Group group;
 
-    public Group getGroup () {
-        return group ;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setGroup (Group group) {
-        this.group  = group ;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
 
@@ -61,19 +56,8 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
+
     public Account() {
-
-    }
-
-    public Account(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
-
-    public Account( String userName,String url, String password) {
-        this.url = url;
-        this.userName = userName;
-        this.password = password;
     }
 
 
