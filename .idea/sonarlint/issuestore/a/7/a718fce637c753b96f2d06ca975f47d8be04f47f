@@ -1,0 +1,12 @@
+
+Z	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(¸™¿g
+`	java:S112-"FDefine and throw a dedicated exception instead of using a generic one.(ô£ÜÃùÿÿÿÿ
+`	java:S112""FDefine and throw a dedicated exception instead of using a generic one.(¡ï¸Óıÿÿÿÿ
+A
+java:S1452""&Remove usage of generic wildcard type.(¡ï¸Óıÿÿÿÿ
+N	java:S106$"9Replace this use of System.out or System.err by a logger.(øÙŞ
+S	java:S106%"9Replace this use of System.out or System.err by a logger.(Â­Ôäüÿÿÿÿ
+S	java:S1065"9Replace this use of System.out or System.err by a logger.(–ËÕ„ùÿÿÿÿ
+V	java:S1257"<This block of commented-out lines of code should be removed.(â­ùÿÿÿÿÿ
+m
+java:S1128"PRemove this unused import 'org.springframework.web.bind.annotation.CrossOrigin'.(º´Ñ†8äúõÚß/

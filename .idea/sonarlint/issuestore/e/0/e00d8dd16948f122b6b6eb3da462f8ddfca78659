@@ -1,0 +1,7 @@
+
+Z
+java:S53448">Don't use the default "PasswordEncoder" relying on plain-text.(«Ν£n8¨Μ¬αί/
+X
+java:S1874=";Remove this use of "NoOpPasswordEncoder"; it is deprecated.(ε‰φ8ÿΗ¬Ϊί/
+W
+java:S1161A":Add the "@Override" annotation above this method signature(Θ†‹8ªΜ¬αί/

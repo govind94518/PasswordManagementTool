@@ -1,0 +1,14 @@
+com\epam\controller\GroupControllerTest.class
+com\epam\service\AccountServiceTest.class
+com\epam\entity\GroupTest.class
+com\epam\controller\RecordControllerTest.class
+com\epam\restcontroller\RestMasterControllerTest.class
+com\epam\service\GroupServiceTest.class
+com\epam\controller\MasterControllerTest.class
+com\epam\restcontroller\RestRecordControllerTest.class
+com\epam\dto\LoginDTOTest.class
+com\epam\dao\GroupDaoImplTest.class
+com\epam\dao\AccountDaoImplTest.class
+com\epam\dto\RegisterDTOTest.class
+com\epam\entity\AccountTest.class
+com\epam\restcontroller\RestGroupControllerTest.class
