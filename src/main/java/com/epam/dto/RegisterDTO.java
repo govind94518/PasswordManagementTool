@@ -1,4 +1,5 @@
 package com.epam.dto;
+
 public class RegisterDTO {
     private String groupName;
     private String userName;
@@ -7,10 +8,8 @@ public class RegisterDTO {
 
     public RegisterDTO() {
     }
-
-
-    public RegisterDTO(String groupName, String  userName, String url, String password) {
-        this.groupName= groupName;
+    public RegisterDTO(String groupName, String userName, String url, String password) {
+        this.groupName = groupName;
         this.userName = userName;
         this.url = url;
         this.password = password;
@@ -19,6 +18,7 @@ public class RegisterDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
     public String getGroupName() {
         return groupName;
     }
