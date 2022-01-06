@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 public class AccountDao {
+    public static final String OOPS_NO_GROUP_FOUND = "Oops! No group found!!";
     @Autowired
     AccountRepository accountRepository;
     @Autowired
@@ -31,7 +32,7 @@ public class AccountDao {
         accounts.add(account);
         boolean existGroup = groupRepository.existsByGroupName(registerDTO.getGroupName());
         if (existGroup)
-            throw new AccountAlreadyExistsException();
+            throw new AccountAlreadyExistsException("Oops! Account already exists!!");
 
         Group group = new Group();
         group.setGroupName(registerDTO.getGroupName());
@@ -46,14 +47,14 @@ public class AccountDao {
 
         List<Group> groupList = (List<Group>) groupRepository.findAll();
         if (groupList.isEmpty())
-            throw new NoGroupFoundForAccount();
+            throw new NoGroupFoundForAccount(OOPS_NO_GROUP_FOUND);
         for (Group group : groupList) {
             if (group.getGroupName().equals(groupName)) {
                 users = group.getUserAccounts();
                 break;
             }
         }
-        if (users.isEmpty()) throw new NoGroupFoundForAccount();
+        if (users.isEmpty()) throw new NoGroupFoundForAccount(OOPS_NO_GROUP_FOUND);
         return users;
     }
 
@@ -61,7 +62,7 @@ public class AccountDao {
         AtomicBoolean isRemoved = new AtomicBoolean(false);
         boolean existGroup = groupRepository.existsByGroupName(groupName);
         if (!existGroup) {
-            throw new NoGroupFoundForAccount();
+            throw new NoGroupFoundForAccount(OOPS_NO_GROUP_FOUND);
         }
         Group group = groupRepository.findByGroupName(groupName);
         List<Account> accountList = group.getUserAccounts();
@@ -72,7 +73,7 @@ public class AccountDao {
                 accountRepository.delete(account);
             }
         });
-        if (!isRemoved.get()) throw new NoRecordFoundForGroup();
+        if (!isRemoved.get()) throw new NoRecordFoundForGroup(OOPS_NO_GROUP_FOUND);
         return isRemoved.get();
     }
 
@@ -80,7 +81,7 @@ public class AccountDao {
         AtomicBoolean isUpdated = new AtomicBoolean(false);
         boolean existGroup = groupRepository.existsByGroupName(groupName);
         if (!existGroup) {
-            throw new NoGroupFoundForAccount();
+            throw new NoGroupFoundForAccount(OOPS_NO_GROUP_FOUND);
         }
         Group group = groupRepository.findByGroupName(groupName);
         List<Account> accountList = group.getUserAccounts();
@@ -93,7 +94,7 @@ public class AccountDao {
                 isUpdated.set(true);
             }
         });
-        if (!isUpdated.get()) throw new NoGroupFoundForAccount();
+        if (!isUpdated.get()) throw new NoGroupFoundForAccount(OOPS_NO_GROUP_FOUND);
         return isUpdated.get();
     }
 
@@ -102,14 +103,14 @@ public class AccountDao {
         final String[] password = {""};
         boolean isGroupNameExist = groupRepository.existsByGroupName(groupName);
         if (!isGroupNameExist)
-            throw new NoRecordFoundForGroup();
+            throw new NoRecordFoundForGroup("Oops! No Record found for group");
         Group group = groupRepository.findByGroupName(groupName);
         List<Account> accountList = group.getUserAccounts();
         accountList.forEach(account -> {
             if (account.getUserName().equals(userName))
                 password[0] = account.getPassword();
         });
-        if (password[0].isEmpty()) throw new NoRecordFoundForGroup();
+        if (password[0].isEmpty()) throw new NoRecordFoundForGroup("Oops! No Record found for group");
         return password[0];
     }
 

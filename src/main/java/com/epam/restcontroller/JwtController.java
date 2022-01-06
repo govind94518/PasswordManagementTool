@@ -22,7 +22,6 @@ public class JwtController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 

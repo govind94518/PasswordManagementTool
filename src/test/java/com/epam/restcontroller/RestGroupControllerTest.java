@@ -5,11 +5,16 @@ import com.epam.entity.Group;
 import com.epam.service.AccountService;
 import com.epam.service.GroupService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -20,9 +25,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
-
-@WebMvcTest(RestGroupController.class)
-@ContextConfiguration(classes = {RestGroupController.class})
+//
+//@WebMvcTest(RestGroupController.class)
+//@ContextConfiguration(classes = {RestGroupController.class})
+@WithMockUser
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 class RestGroupControllerTest {
     @Autowired
     MockMvc mockMvc;
@@ -122,6 +131,18 @@ class RestGroupControllerTest {
 
     @Test
     void tesDeleteUserAccount() throws Exception {
+        when(groupService.updateGroup("ram", "rahul")).thenReturn(true);
+        String uri = "/group/deleteUserAccount/rahul/ram";
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.delete(uri)
+                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(404, status);
+        String content = mvcResult.getResponse().getContentAsString();
+        assertTrue(content.length() > 0);
+
+    }
+    @Test
+    void testDeleteUserAccount() throws Exception {
         when(groupService.updateGroup("ram", "rahul")).thenReturn(true);
         String uri = "/group/deleteUserAccount/rahul/ram";
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.delete(uri)

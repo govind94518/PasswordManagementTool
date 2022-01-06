@@ -5,11 +5,16 @@ import com.epam.service.AccountService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,8 +24,12 @@ import com.epam.dto.RegisterDTO;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-@WebMvcTest(RecordController.class)
-@ContextConfiguration(classes = {RecordController.class})
+//@WebMvcTest(RecordController.class)
+//@ContextConfiguration(classes = {RecordController.class})
+@WithMockUser
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 class RestRecordControllerTest {
     @Autowired
     MockMvc mockMvc;
@@ -32,14 +41,14 @@ class RestRecordControllerTest {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/record/registerAccount")
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
         int status = mvcResult.getResponse().getStatus();
-        assertEquals(404, status);
+        assertEquals(202, status);
     }
 
     @Test
     void testCreateAccount2() throws Exception {
         RegisterDTO registerDTO = new RegisterDTO("TATA", "Rahul", "www.leetcode.com", "#@*ui*&M");
         when(accountService.registerAccount(registerDTO)).thenReturn(true);
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/record/createAccount/registerDTO")
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/record/createAccount")
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
         int status = mvcResult.getResponse().getStatus();
         assertEquals(404, status);
@@ -59,6 +68,6 @@ class RestRecordControllerTest {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
         int status = mvcResult.getResponse().getStatus();
-        assertEquals(404, status);
+        assertEquals(200, status);
     }
 }

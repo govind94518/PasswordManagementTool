@@ -19,8 +19,6 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-
-
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
@@ -45,7 +43,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 username = this.jwtUtil.getUsernameFromToken(jwtToken);
 
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -54,8 +51,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
                 //security
-
-
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

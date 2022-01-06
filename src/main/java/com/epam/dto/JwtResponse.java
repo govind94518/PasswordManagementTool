@@ -4,6 +4,7 @@ public class JwtResponse {
     String token;
 
     public JwtResponse() {
+        //constructor
     }
 
     public JwtResponse(String token) {

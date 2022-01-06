@@ -5,6 +5,7 @@ public class JwtRequest {
     String password;
 
     public JwtRequest() {
+        //constructor
     }
 
     public JwtRequest(String username, String password) {

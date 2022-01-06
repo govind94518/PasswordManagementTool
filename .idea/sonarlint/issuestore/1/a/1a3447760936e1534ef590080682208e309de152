@@ -1,4 +1,7 @@
 
-]	java:S125"<This block of commented-out lines of code should be removed.(Ö×¬¦øÿÿÿÿ8İú´Íß/
-7
-java:S1220""Move this file to a named package.8Şú´Íß/
+c
+java:S1192"FDefine a constant instead of duplicating this literal "error" 4 times.(Ÿ³òş8«õÚ‹à/
+d
+java:S1192"GDefine a constant instead of duplicating this literal "status" 4 times.(“øÎû8«õÚ‹à/
+g
+java:S1192"JDefine a constant instead of duplicating this literal "timestamp" 4 times.(ØÖÆ¼8¬õÚ‹à/

@@ -33,7 +33,7 @@ public class RestMasterController {
         HttpStatus statusCode = HttpStatus.NOT_FOUND;
         if (administratorName.equals(admin) && administratorPassword.equals(password)) {
             result = "success";
-            statusCode = HttpStatus.ACCEPTED;
+            statusCode = HttpStatus.OK;
         }
         if (result.isEmpty()) result = "error";
         return new ResponseEntity<String>(result, statusCode);

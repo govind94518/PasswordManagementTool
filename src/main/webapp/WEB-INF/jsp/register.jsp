@@ -17,7 +17,7 @@
    <body>
       <input type="checkbox" id="active">
       <label for="active" class="menu-btn"><i class="fas fa-bars"></i></label>
-      <div class="wrapper">
+      <div class="">
          <ul>
                 <form name="student" action="createAccount" >
                    <li><a   > groupName:</a><input type="text" name="groupName"> </li>
@@ -28,14 +28,14 @@
                 <br>
                  </form>
          </ul>
-      </div>
+  <!--    </div>
       <div class="content">
-         <div class="title">
+        <div class="title">
               Successful Entered Welcome
          </div>
          <p>
           Click on Menu option
          </p>
-      </div>
+      </div> -->
    </body>
 </html>
