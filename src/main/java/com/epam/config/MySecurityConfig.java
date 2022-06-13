@@ -30,6 +30,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationEntryPoint entryPoint;
 
+
+    // this is for  authorization
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -50,7 +52,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    //over
+      // this is for authentication
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService);
